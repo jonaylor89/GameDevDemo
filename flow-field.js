@@ -6,14 +6,16 @@ let zoff = 0;
 let particles = [];
 let flowField = [];
 
-function Particle(){
+class Particle {
 
-    this.pos = createVector(random(width), random(height));
-    this.vel = createVector(0, 0);
-    this.acc = createVector(0, 0);
-    this.maxSpeed = 2;
+    constructor() {
+        this.pos = createVector(random(width), random(height));
+        this.vel = createVector(0, 0);
+        this.acc = createVector(0, 0);
+        this.maxSpeed = 2;
+    }
 
-    this.update = function(){
+    update(){
       this.pos.add(this.vel);
       this.vel.add(this.acc);
       this.vel.limit(this.maxSpeed);
@@ -22,7 +24,7 @@ function Particle(){
       this.edges();
     }
 
-    this.follow = function(vectors){
+    follow(vectors){
       let x = floor(this.pos.x / scl);
       let y = floor(this.pos.y / scl);
       let index = x + y * cols;
@@ -31,17 +33,17 @@ function Particle(){
 
     }
 
-    this.applyForce = function(force){
+    applyForce(force){
       this.acc.add(force);
     }
 
-    this.show = function(){
+    show(){
       stroke(0, 5);
       strokeWeight(7);
       point(this.pos.x, this.pos.y);
     }
 
-    this.edges = function(){
+    edges(){
       if (this.pos.x > width) this.pos.x = 0;
       if (this.pos.x < 0) this.pos.x = width;
       if (this.pos.y > height) this.pos.y = 0;
