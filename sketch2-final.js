@@ -31,7 +31,7 @@ let numOfDrops;
 
 function setup() {
 
-    createCanvas(800, 800);
+    createCanvas(600, 600);
 
 
     gravity = 0.1;
